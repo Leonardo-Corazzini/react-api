@@ -1,0 +1,56 @@
+.card {
+    border-radius: 10px;
+    background-color: white;
+    margin: 70px 0px;
+    box-shadow: 1px 1px 7px 3px rgb(158, 157, 157);
+}
+
+.img {
+    max-width: 600px;
+}
+
+.thumb {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    aspect-ratio: 3/2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.body {
+    padding: 15px;
+}
+
+.title {
+    margin-bottom: 15px;
+}
+
+.description {
+    margin-bottom: 15px;
+}
+
+
+.tagSection {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.html {
+    color: green;
+}
+
+.css {
+    color: pink;
+}
+
+.js {
+    color: orange;
+}
+
+.php {
+    color: bisque;
+}

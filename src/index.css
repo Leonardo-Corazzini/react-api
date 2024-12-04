@@ -1,0 +1,83 @@
+/* reset rules */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -10px;
+}
+
+.col-6 {
+  width: calc(100% / 12 * 6);
+  padding: 10px;
+}
+
+/* style */
+body {
+  background-color: rgb(243, 241, 240);
+}
+
+header {
+  background-color: rgb(233, 230, 229);
+  padding: 20px;
+  margin-bottom: 4rem;
+}
+
+.title {
+  text-align: center;
+}
+
+footer {
+  background-color: rgb(73, 72, 72);
+  padding: 30px 50px;
+}
+
+.footer-description {
+  color: white;
+  text-align: center;
+}
+
+/* form */
+.form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+
+
+}
+
+.card-container {
+  position: relative;
+}
+
+.xmark {
+  color: rgb(206, 56, 56);
+  position: absolute;
+  top: 11%;
+  right: 3%;
+  font-size: 1.5rem;
+}
+
+.xwrench {
+  color: rgb(112, 139, 228);
+  position: absolute;
+  top: 63%;
+  right: 3%;
+  font-size: 1.2rem;
+}
