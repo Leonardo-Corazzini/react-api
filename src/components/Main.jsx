@@ -61,12 +61,13 @@ function Main() {
 
     }
 
-    function deletePost(postToDelete) {
+    function deletePost(id) {
+
+        axios.delete(`${API_BASE_URI}posts/${id}`)
+            .then(() => fetchPosts())
+            .catch(err => console.log(err))
 
 
-
-
-        setPosts(posts.filter(post => post !== postToDelete))
     }
 
     // useEffect(() => {
@@ -109,7 +110,7 @@ function Main() {
                             post.published && <div key={post.id} className="col-6 card-container">
                                 <div>{clickedCardID === post.id && modifyMode ? <ModifyForm callback={setModifyTitle} title={modifyTitle} callback2={() => confirmModifyForm(post, modifyTitle)} /> : ''}</div>
                                 <div onClick={() => modifyFormToggle(post.id)} className='xwrench'><FontAwesomeIcon icon={faWrench} /></div>
-                                <div onClick={() => deletePost(post)} className='xmark'><FontAwesomeIcon icon={faXmark} /></div>
+                                <div onClick={() => deletePost(post.id)} className='xmark'><FontAwesomeIcon icon={faXmark} /></div>
                                 <Card props={post} />
                             </div>
                         )
