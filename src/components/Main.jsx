@@ -55,7 +55,7 @@ function Main() {
                 setPosts([...posts, res.data])
                 setFormData(initialFormData)
             }).catch(err => {
-                console.log(err)
+                alert(err.response.data.message)
             })
 
 
@@ -65,7 +65,7 @@ function Main() {
 
         axios.delete(`${API_BASE_URI}posts/${id}`)
             .then(() => fetchPosts())
-            .catch(err => console.log(err))
+            .catch(err => alert(err.response.data.message))
 
 
     }
@@ -94,9 +94,14 @@ function Main() {
         <main>
             <div className="container">
                 <form onSubmit={addPost} action="" className="form">
+                    <label htmlFor="title">inserisci titolo</label>
                     <input onChange={handlerFormData} type="text" name='title' placeholder="inserisci titolo" value={formData.title} />
+                    <label htmlFor="image">inserisci percorso immagine</label>
                     <input onChange={handlerFormData} type="text" name='image' placeholder="inserisci percorso immagine" value={formData.image} />
-                    <input onChange={handlerFormData} type="text" name='content' placeholder="inserisci percorso immagine" value={formData.content} />
+                    <label htmlFor="content">Inserisci contentuto</label>
+                    <textarea onChange={handlerFormData} type="text" name='content' placeholder="Contentuto articolo..." value={formData.content} ></textarea>
+                    <label htmlFor="tags">Tags</label>
+                    <input onChange={handlerFormData} type="text" name='tags' id='tags' value={formData.tags} placeholder='tag1,tag2,ecc...' />
                     <input onChange={handlerFormData} checked={formData.published} name='published' id='published' type="checkbox" />
                     <label htmlFor='published' >Pubblica</label>
 

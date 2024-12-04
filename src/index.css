@@ -55,10 +55,49 @@ footer {
 /* form */
 .form {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
 
+
+}
+
+label {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+input[type='text'] {
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+textarea {
+  height: 5rem;
+  width: 20rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+
+}
+
+input[type='submit'] {
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: 0.5rem;
+  background-color: rgb(224, 222, 222);
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background-color: rgb(209, 207, 207);
 
 }
 
