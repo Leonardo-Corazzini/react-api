@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faWrench } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from "react"
+import axios from 'axios'
 import Card from "./Card/Card"
-import initialPosts from "../posts"
 import ModifyForm from './ModifyForm/ModifyForm'
 const initialFormData = {
     title: '',
@@ -13,23 +13,25 @@ const initialFormData = {
     tags: [],
     published: true,
 }
-
-const allTags = ["html", "css", "js", "php"]
+export const API_BASE_URI = 'http://localhost:3000/'
 
 function Main() {
-    const [posts, setPosts] = useState(initialPosts)
+    const [posts, setPosts] = useState([])
     const [formData, setFormData] = useState(initialFormData)
 
+    function fetchPosts() {
+        axios.get(`${API_BASE_URI}posts`)
+            .then((res) => setPosts(res.data))
+            .catch(err => {
+                console.log(err)
+            })
 
 
-    function handlerTagChange(e) {
-
-        const clickTag = e.target.value
-        setFormData((formData) => ({
-            ...formData,
-            tags: formData.tags.includes(clickTag) ? formData.tags.filter((tag) => tag !== clickTag) : [...formData.tags, clickTag]
-        }))
     }
+    useEffect(fetchPosts, [])
+
+
+
 
 
     function handlerFormData(e) {
@@ -48,9 +50,13 @@ function Main() {
     function addPost(event) {
         event.preventDefault()
 
-
-        setPosts([...posts, { id: Date.now(), ...formData }])
-        setFormData(initialFormData)
+        axios.post(`${API_BASE_URI}posts`, formData)
+            .then(res => {
+                setPosts([...posts, res.data])
+                setFormData(initialFormData)
+            }).catch(err => {
+                console.log(err)
+            })
 
 
     }
@@ -63,9 +69,9 @@ function Main() {
         setPosts(posts.filter(post => post !== postToDelete))
     }
 
-    useEffect(() => {
-        alert('change')
-    }, [formData.published])    // 
+    // useEffect(() => {
+    //     alert('change')
+    // }, [formData.published])    // 
 
     const [clickedCardID, setClickedCardID] = useState(0)
     const [modifyMode, setModifyMode] = useState(false)
@@ -90,18 +96,6 @@ function Main() {
                     <input onChange={handlerFormData} type="text" name='title' placeholder="inserisci titolo" value={formData.title} />
                     <input onChange={handlerFormData} type="text" name='image' placeholder="inserisci percorso immagine" value={formData.image} />
                     <input onChange={handlerFormData} type="text" name='content' placeholder="inserisci percorso immagine" value={formData.content} />
-
-                    {
-                        allTags.map((tag, i) => {
-                            return (
-                                <span>
-                                    <input type="checkbox" name="tags" id={`tag-${i}`} onChange={handlerTagChange} value={tag} />
-                                    <label htmlFor={`tag-${i}`}>{tag}</label>
-                                </span>
-                            )
-                        })
-                    }
-
                     <input onChange={handlerFormData} checked={formData.published} name='published' id='published' type="checkbox" />
                     <label htmlFor='published' >Pubblica</label>
 

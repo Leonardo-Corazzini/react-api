@@ -1,5 +1,6 @@
 import Button from "../Button/Button"
 import style from "./Card.module.css"
+import { API_BASE_URI } from "../Main";
 const placeHolderImage = "https://placehold.co/600x400"
 
 
@@ -10,7 +11,7 @@ function Card({ props, }) {
     return (
         <div className={style.card}>
             <div className={style.img}>
-                <img className={style.thumb} src={image || placeHolderImage} alt="" />
+                <img className={style.thumb} src={image ? API_BASE_URI + image : placeHolderImage} alt="" />
             </div>
             <div className={style.body}>
                 <h3 className={style.title}>{title}</h3>
