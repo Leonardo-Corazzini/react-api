@@ -10,7 +10,7 @@ const initialFormData = {
     title: '',
     image: '',
     content: '',
-    tags: [],
+    tags: '',
     published: true,
 }
 export const API_BASE_URI = 'http://localhost:3000/'
@@ -49,13 +49,16 @@ function Main() {
 
     function addPost(event) {
         event.preventDefault()
-
-        axios.post(`${API_BASE_URI}posts`, formData)
+        const newPost = {
+            ...formData,
+            tags: formData.tags.split(',').map(tag => tag.trim())
+        }
+        axios.post(`${API_BASE_URI}posts`, newPost)
             .then(res => {
                 setPosts([...posts, res.data])
                 setFormData(initialFormData)
             }).catch(err => {
-                alert(err.response.data.message)
+                console.log(err)
             })
 
 
@@ -65,7 +68,7 @@ function Main() {
 
         axios.delete(`${API_BASE_URI}posts/${id}`)
             .then(() => fetchPosts())
-            .catch(err => alert(err.response.data.message))
+            .catch(err => console.log(err))
 
 
     }
